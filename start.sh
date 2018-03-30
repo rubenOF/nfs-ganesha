@@ -32,12 +32,10 @@ EXPORT
 		# Access control options
 		Access_Type = RW;
 		Squash = No_Root_Squash;
-		Root_Access = "${GANESHA_ROOT_ACCESS}";
-		Access = "${GANESHA_ACCESS}";
 
 		# NFS protocol options
-		Transports = "${GANESHA_TRANSPORTS}";
-		Protocols = "${GANESHA_NFS_PROTOCOLS}";
+		Transports = ${GANESHA_TRANSPORTS};
+		Protocols = ${GANESHA_NFS_PROTOCOLS};
 
 		SecType = "sys";
 

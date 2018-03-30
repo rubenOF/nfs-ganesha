@@ -14,8 +14,6 @@ Currently generates a config for just serving a local path over nfs. However sup
 * `GANESHA_EPOCH`: ganesha epoch value
 * `GANESHA_EXPORT_ID`: ganesha unique export id
 * `GANESHA_EXPORT`: export location
-* `GANESHA_ACCESS`: export access acl list
-* `GANESHA_ROOT_ACCESS`: export root access acl list
 * `GANESHA_NFS_PROTOCOLS`: nfs protocols to support
 * `GANESHA_TRANSPORTS`: nfs transports to support
 * `GANESHA_BOOTSTRAP_CONFIG`: write fresh config file on start
@@ -37,12 +35,10 @@ EXPORT
 		# Access control options
 		Access_Type = RW;
 		Squash = No_Root_Squash;
-		Root_Access = "${GANESHA_ROOT_ACCESS}";
-		Access = "${GANESHA_ACCESS}";
 
 		# NFS protocol options
-		Transports = "${GANESHA_TRANSPORTS}";
-		Protocols = "${GANESHA_NFS_PROTOCOLS}";
+		Transports = ${GANESHA_TRANSPORTS};
+		Protocols = ${GANESHA_NFS_PROTOCOLS};
 
 		SecType = "sys";
 
