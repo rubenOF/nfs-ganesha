@@ -18,6 +18,10 @@ function bootstrap_config {
 	echo "Bootstrapping Ganesha NFS config"
   cat <<END >${GANESHA_CONFIGFILE}
 
+NFS_Core_Param
+{
+        Nb_Worker = 8;
+}
 EXPORT
 {
 		# Export Id (mandatory, each EXPORT must have a unique Export_Id)
