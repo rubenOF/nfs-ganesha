@@ -1,14 +1,17 @@
-FROM ubuntu:xenial
+FROM ubuntu:bionic
 MAINTAINER Mitchell Hewes <me@mitcdh.com>
 
 # install prerequisites
 RUN DEBIAN_FRONTEND=noninteractive \
- && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3FE869A9 \
- && echo "deb http://ppa.launchpad.net/gluster/nfs-ganesha-2.5/ubuntu xenial main" > /etc/apt/sources.list.d/nfs-ganesha-2.5.list \
- && echo "deb http://ppa.launchpad.net/gluster/libntirpc-1.5/ubuntu xenial main" > /etc/apt/sources.list.d/libntirpc-1.5.list \
- && echo "deb http://ppa.launchpad.net/gluster/glusterfs-3.13/ubuntu xenial main" > /etc/apt/sources.list.d/glusterfs-3.13.list \
  && apt-get update \
- && apt-get install -y netbase nfs-common dbus nfs-ganesha nfs-ganesha-vfs glusterfs-common \
+ && apt-get install -y gnupg2 --no-install-recommends \
+ && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 34DC57CA \
+ && echo "deb http://ppa.launchpad.net/nfs-ganesha/nfs-ganesha-2.8/ubuntu bionic main" > /etc/apt/sources.list.d/nfs-ganesha-2.8.list \
+ && echo "deb http://ppa.launchpad.net/nfs-ganesha/libntirpc-1.8/ubuntu bionic main" > /etc/apt/sources.list.d/libntirpc-1.8.list \
+ && apt-get update \
+ && apt-get install -y netbase nfs-common dbus nfs-ganesha nfs-ganesha-vfs --no-install-recommends \
+ && apt-get remove -y gnupg \
+ && apt-get autoremove -y \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
  && mkdir -p /run/rpcbind /export /var/run/dbus \
